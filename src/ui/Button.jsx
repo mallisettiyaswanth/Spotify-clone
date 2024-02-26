@@ -12,6 +12,10 @@ const variations = {
   dark: css`
     background-color: #000;
     color: white;
+  `,
+  next: css`
+    background-color: green;
+    color: black;
   `
 };
 
@@ -31,7 +35,7 @@ const Button = styled.button`
   min-height: 40px;
   min-width: 40px;
   cursor: pointer;
-  padding: 8px 15px;
+  padding: 4px 10px;
   font-size: 1.1rem;
   margin: 6px 10px;
 

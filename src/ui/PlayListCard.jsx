@@ -1,7 +1,8 @@
-import { AiFillBoxPlot, AiOutlineArrowRight, AiOutlinePlus } from 'react-icons/ai';
+import {  AiOutlineArrowRight, AiOutlinePlus } from 'react-icons/ai';
 import styled from 'styled-components';
 import ButtonGroup from './ButtonGroup';
 import Button from './Button';
+import { BiSolidPlaylist } from "react-icons/bi";
 
 const PlayList = styled.div`
   background-color: #121212;
@@ -32,7 +33,7 @@ const Heading = styled.div`
   align-items: center;
 
   & span {
-    font-size: 1.2rem;
+    font-size: .9rem;
     font-weight: bolder;
   }
 
@@ -49,8 +50,8 @@ function PlayListCard({ openNav, setOpenNav }) {
     <PlayList>
       <PlayListHeader style={openNav ? { flexDirection: 'column', gap: '2rem' } : {}}>
         <Heading>
-          <AiFillBoxPlot onClick={() => setOpenNav()} />
-          {!openNav && <span style={{fontSize : "1rem"}} onClick={() => setOpenNav()}>Your Library</span>}
+          <BiSolidPlaylist  onClick={() => setOpenNav()} />
+          {!openNav && <span style={{fontSize : ".9rem"}} onClick={() => setOpenNav()}>Your Library</span>}
         </Heading>
         {!openNav ? (
           <ButtonGroup prop1={<AiOutlinePlus />} prop2={<AiOutlineArrowRight />} />

@@ -14,6 +14,7 @@ const ErrorDiv = styled.div`
     justify-content: center;
     flex-direction: row;
     gap: .5rem;
+    font-family: var(--font-roboto-100);
 `
 
 

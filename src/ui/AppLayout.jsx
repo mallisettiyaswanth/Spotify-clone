@@ -6,6 +6,8 @@ import ContentLayout from './ContentLayout';
 import { useEffect, useState } from 'react';
 import Column from './Column';
 import { useWindowSize } from '@uidotdev/usehooks';
+import MobileNavigations from "./../ui/MobileNavigations";
+
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -14,6 +16,11 @@ const StyledDiv = styled.div`
   gap: 0.5rem;
   font-family: var(--font-roboto-100);
   display: flex;
+
+
+  @media (max-width: 650px) {
+    padding: 0;
+  }
 `;
 
 function AppLayout() {
@@ -33,15 +40,13 @@ function AppLayout() {
   );
 
   return (
-    <>
       <StyledDiv>
-        <Column openNav={openNav}>
+        {windowSize.width > 650 ? <Column openNav={openNav}>
           <PageNav openNav={openNav} />
           <PlayListCard openNav={openNav} setOpenNav={handleCloseNav} />
-        </Column>
+        </Column> : <MobileNavigations />}
         <ContentLayout>{<Outlet />}</ContentLayout>
       </StyledDiv>
-    </>
   );
 }
 

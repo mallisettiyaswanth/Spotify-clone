@@ -21,7 +21,7 @@ const StyledLi = styled.li`
   font-size: 1.8rem;
 `;
 
-const Navlink = styled(NavLink)`
+export const Navlink = styled(NavLink)`
   display: flex;
   align-items: end;
   justify-content: start;
@@ -35,7 +35,7 @@ const Navlink = styled(NavLink)`
   }
 `;
 
-const Text = styled.span`
+export const Text = styled.span`
   font-size: 1.25rem;
   font-weight: 700;
 `;

@@ -6,6 +6,8 @@ const ButtonGrp = styled.div`
   align-items: center;
   justify-content: center;
   height: 3rem;
+  width: 6rem;
+  font-size: 1rem
 `;
 
 function ButtonGroup({ prop1, prop2, size, variation, fun1, fun2 }) {

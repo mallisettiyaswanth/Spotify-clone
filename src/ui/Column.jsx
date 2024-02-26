@@ -4,9 +4,10 @@ const StyledColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  width: 400px;
+  width: 380px;
   overflow: hidden;
   flex-shrink: 1;
+
 `;
 
 function Column({ children, openNav }) {

@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, RecaptchaVerifier, getAuth, signInWithPopup } from 'firebase/auth';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyB1lN52OD7_opci_0t9J5lWAC4c9DanH44',
   authDomain: 'spotify-2b0e7.firebaseapp.com',
@@ -12,6 +13,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const GoogleProvider = new GoogleAuthProvider();
 const auth = getAuth();
+
+
 
 export async function SignWithGoogleAccount() {
   const authenticate = await signInWithPopup(auth, GoogleProvider);
@@ -34,4 +37,13 @@ export async function SignInWithEmailAndPassword({email, password}) {
     imageUrl: authenticate.user.photoURL,
     isVerified: authenticate.user.emailVerified
   };
+}
+
+export async function Captcha() {
+  window.recaptchaVerifier = new RecaptchaVerifier('sign-up-button', {
+    'size': 'invisible',
+    'callback': (response) => {
+      SignInWithPhoneNumber();
+    }
+  }, auth);
 }

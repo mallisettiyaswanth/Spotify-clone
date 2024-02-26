@@ -21,7 +21,7 @@ const userSlice = createSlice({
   }
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setMusicPlayerRef } = userSlice.actions;
 
 const store = configureStore({
   reducer: {

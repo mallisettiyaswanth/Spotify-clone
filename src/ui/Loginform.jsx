@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import styled from "styled-components";
 import ErrorMessage from './ErrorMessage';
 import { Link } from "react-router-dom";
+import Input from "./Input";
 
 const StyledForm = styled.form`
     min-height: 27rem;
@@ -14,34 +15,15 @@ const StyledForm = styled.form`
     padding: 1rem 3rem;
     gap: 1.2rem;
     font-family: var(--font-roboto-100);
+    @media (max-width: 650px) {
+        padding: 1rem 1.5rem ;
+    }
     `;
 
 
-const Input = styled.input`
-    height: 3rem;
-    background-color: transparent;
-    border-radius: 4px;
-    border: 2px solid #ffffffb5;
-    color: #fff;
-    padding: 0 .8rem;
-    outline: none;
-    font-size: 1rem;
-    &:hover {
-        border: 2px solid #ffffff88;
-    }
-    
-    &:focus {
-        border: 3px solid #fff;
-    }
-    
-    &::placeholder {
-        font-family: var(--font-roboto-100);
-        color: #ffffff80
-    }
 
-`;
 
-const InputDiv = styled.div`
+export const InputDiv = styled.div`
     width: 60%;
     min-height: 6rem;
     display: flex;
@@ -53,9 +35,14 @@ const InputDiv = styled.div`
     & ${Input} {
         width: 100%;
     }
+
+    @media (max-width: 650px) {
+        width: 100%;   
+    }
     
     `;
-const FormButton = styled.button`
+
+export const FormButton = styled.button`
     height: 3rem;
     width: 22rem;
     background-color: #1ed760;
@@ -68,6 +55,10 @@ const FormButton = styled.button`
     &:hover {
         scale: 1.02;
         font-weight: 1000;
+    }
+
+    @media (max-width: 650px) {
+        width: 18rem;
     }
 `
  const CustomLink = styled(Link)`

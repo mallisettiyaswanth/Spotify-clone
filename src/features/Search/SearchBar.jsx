@@ -67,7 +67,7 @@ function Searchbar() {
       />
       <Search
         type="text"
-        value={search || params.q}
+        value={search}
         onChange={(e) => handleSearch(e)}
         placeholder="What do you eant to listen to?"
       />

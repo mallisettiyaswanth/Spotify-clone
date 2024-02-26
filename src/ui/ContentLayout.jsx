@@ -1,13 +1,13 @@
 import { GrDownload, GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Searchbar from '../features/Search/SearchBar';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HiBellAlert } from 'react-icons/hi2';
+import { useWindowSize } from '@uidotdev/usehooks';
 
 
 const DisplayLayout = styled.main`
@@ -37,17 +37,60 @@ const Directions = styled.div`
   gap: 1rem;
 `;
 
+const CustomUl = styled.ul`
+  min-height: 3rem;
+  width: 10rem;
+  position: absolute;
+  right: 20px;
+  top: 60px;
+  border-radius: 3px;
+  background-color: #282828;
+  color: white;
+  list-style: none;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  font-size: .9rem;
+  font-weight: bold;
+  & li:hover {
+    background-color: #3b3a3a;
+  }
+
+  & li {
+    width: 100%;
+    height: 2.5rem;
+    padding: .4rem .8rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+  }
+
+`
+
 function ContentLayout({ children }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const userImage = useSelector((state) => state.user.imageUrl);
+  const windowSize = useWindowSize();
 
+  const userImage = JSON.parse(sessionStorage.getItem('obj'))?.imageUrl;
+  
   const handleBack = () => navigate(-1);
   const handleNext = () => navigate(1);
 
   const [toolBarOpen, setHandleTookBar] = useState(false);
+
   function handleToolBar() {
+    console.log('toolBarOpen');
     setHandleTookBar((state) => !state);
+  }
+
+  function handleLogOut() {
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/login")
   }
 
   return (
@@ -62,21 +105,21 @@ function ContentLayout({ children }) {
         />
         {pathname.startsWith('/search') && <Searchbar />}
         <Directions>
-          <Button variation="dark" size="medium">
+          {windowSize.width > 650 && <Button variation="dark" size="medium">
             <GrDownload /> <span>Install App</span>
-          </Button>
+          </Button>}
           <ButtonGroup
             prop1={<HiBellAlert />}
             variation="dark"
             size="medium"
-            onClick={handleToolBar}
+            fun2={handleToolBar}
             prop2={<img style={{ height: '30px', borderRadius: '50%' }} src={userImage} />}
           />
         </Directions>
         {toolBarOpen && (
-          <ul>
-            <li>Log out</li>
-          </ul>
+          <CustomUl>
+            <li onClick={handleLogOut}>Log out</li>
+          </CustomUl>
         )}
       </StyledNav>
       {children}

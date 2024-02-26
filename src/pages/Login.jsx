@@ -1,5 +1,5 @@
 import { useDocumentTitle } from '@uidotdev/usehooks';
-import { BsApple, BsFacebook, BsPhone, BsPhoneFill } from 'react-icons/bs';
+import { BsApple, BsFacebook} from 'react-icons/bs';
 import { GrGoogle } from 'react-icons/gr';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,26 +9,7 @@ import Button from '../ui/Button';
 import { SignInWithEmailAndPassword, SignWithGoogleAccount } from '../authentication/firebase';
 import LoginForm from './../ui/Loginform';
 import {CustomLink} from "./../ui/Loginform"
-
-const Header = styled.div`
-  height: 3rem;
-  width: 100%;
-  background-color: #121212;
-  display: flex;
-  align-items: center;
-  padding: 3rem;
-  gap: 1rem;
-
-  & h1 {
-    font-family: var(--font-roboto-100);
-    font-weight: bolder;
-  }
-`;
-
-const Image = styled.img`
-  height: 3rem;
-  width: 3rem;
-`;
+import LoginHeader from '../ui/LoginHeader';
 
 const LoginDiv = styled.div`
   height: 70rem;
@@ -56,8 +37,19 @@ const Card = styled.div`
     font-size: 3rem;
     font-family: 'Figtree', sans-serif;
     font-weight: 900;
+
+    @media (max-width: 650px) {
+        font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 650px) {
+    width: 100%;
+    height: 80rem;
   }
 `;
+
+
 
 const Hr = styled.hr`
   width: 80%;
@@ -70,6 +62,7 @@ const LoginButtons = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 20rem;
 `
 
 const Login = () => {
@@ -100,27 +93,24 @@ const Login = () => {
 
   return (
     <>
-      <Header>
-        <Image src="/spotify.png" alt="" />
-        <h1>Spotify</h1>
-      </Header>
+      <LoginHeader />
       <LoginDiv>
         <Card>
           <h1>Log in to Spotify</h1>
           <LoginButtons>
-          <Button auth="auth" onClick={handleSignInWithGoogle}>
+          <Button style={{minHeight : "50px"}} auth="auth" onClick={handleSignInWithGoogle}>
             <GrGoogle style={{ position: 'absolute', left: '1.5rem', fontSize: '1.3rem' }} />
             <span>Continue with Google</span>
           </Button>
-          <Button auth="auth">
+          <Button style={{minHeight : "50px"}} auth="auth">
             <BsFacebook style={{ position: 'absolute', left: '1.5rem', fontSize: '1.3rem' }} />
             <span>Continue with Facebook</span>
           </Button>
-          <Button auth="auth">
+          <Button style={{minHeight : "50px"}} auth="auth">
             <BsApple style={{ position: 'absolute', left: '1.5rem', fontSize: '1.3rem' }} />
             <span>Continue with Apple</span>
           </Button>
-          <Button auth="auth">
+          <Button onClick={() => navigate("/login/phone")} style={{minHeight : "50px"}} auth="auth">
             <span>Continue with Phone Number</span>
           </Button>
           </LoginButtons>

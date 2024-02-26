@@ -13,19 +13,24 @@ const PlayerDiv = styled.div`
   padding-bottom: 10rem;
 
   &::-webkit-scrollbar {
-    display: none;
-  }
+  width: 8px;
+}
 
-  & {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+&::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 100px;
+}
+
+&::-webkit-scrollbar-thumb {
+  background-color: #dadada44;
+  border-radius: 100px;
+}
 `;
 
 const H1 = styled.h1`
   padding-left: 2rem;
   margin-top: 1rem;
-  margin-bottom: -1rem;
+  margin-bottom: 1rem;
 `;
 
 function CategoryExplorePage() {
