@@ -71,11 +71,19 @@ const Button = styled.button`
         }
       `;
   }}
+  ${(props) => {
+    if (props.disabled === true) {
+      return css`
+        cursor: not-allowed;
+      `;
+    }
+  }}
 `;
 
 Button.defaultProps = {
   size: 'small',
-  variation: 'transparent'
+  variation: 'transparent',
+  disabled: false
 };
 
 export default Button;

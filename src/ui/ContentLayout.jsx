@@ -5,10 +5,9 @@ import Searchbar from '../features/Search/SearchBar';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
 
-import { useEffect, useState } from 'react';
-import { HiBellAlert } from 'react-icons/hi2';
 import { useWindowSize } from '@uidotdev/usehooks';
-
+import { useState } from 'react';
+import { HiBellAlert } from 'react-icons/hi2';
 
 const DisplayLayout = styled.main`
   background-color: var(--color-grey-bgc);
@@ -53,7 +52,7 @@ const CustomUl = styled.ul`
   justify-content: center;
   flex-direction: column;
   cursor: pointer;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: bold;
   & li:hover {
     background-color: #3b3a3a;
@@ -62,13 +61,12 @@ const CustomUl = styled.ul`
   & li {
     width: 100%;
     height: 2.5rem;
-    padding: .4rem .8rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 3px;
     display: flex;
     align-items: center;
   }
-
-`
+`;
 
 function ContentLayout({ children }) {
   const navigate = useNavigate();
@@ -76,11 +74,12 @@ function ContentLayout({ children }) {
   const windowSize = useWindowSize();
 
   const userImage = JSON.parse(sessionStorage.getItem('obj'))?.imageUrl;
-  
+
   const handleBack = () => navigate(-1);
   const handleNext = () => navigate(1);
 
   const [toolBarOpen, setHandleTookBar] = useState(false);
+  const displaySizes = useWindowSize();
 
   function handleToolBar() {
     console.log('toolBarOpen');
@@ -90,24 +89,28 @@ function ContentLayout({ children }) {
   function handleLogOut() {
     localStorage.clear();
     sessionStorage.clear();
-    navigate("/login")
+    navigate('/login');
   }
 
   return (
     <DisplayLayout>
       <StyledNav>
-        <ButtonGroup
-          fun1={handleBack}
-          fun2={handleNext}
-          prop1={<GrFormPrevious />}
-          prop2={<GrFormNext />}
-          variation="dark"
-        />
+        {displaySizes.width > 400 && (
+          <ButtonGroup
+            fun1={handleBack}
+            fun2={handleNext}
+            prop1={<GrFormPrevious />}
+            prop2={<GrFormNext />}
+            variation="dark"
+          />
+        )}
         {pathname.startsWith('/search') && <Searchbar />}
         <Directions>
-          {windowSize.width > 650 && <Button variation="dark" size="medium">
-            <GrDownload /> <span>Install App</span>
-          </Button>}
+          {windowSize.width > 650 && (
+            <Button variation="dark" size="medium">
+              <GrDownload /> <span>Install App</span>
+            </Button>
+          )}
           <ButtonGroup
             prop1={<HiBellAlert />}
             variation="dark"

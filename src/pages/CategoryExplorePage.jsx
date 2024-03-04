@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchItems } from '../services/categoriesApi';
 import MusicPlayer from '../ui/MusicPlayer';
-import SearchButtonGroup from '../ui/SearchButtonGroup';
 
 const PlayerDiv = styled.div`
   overflow: scroll;
@@ -13,18 +12,25 @@ const PlayerDiv = styled.div`
   padding-bottom: 10rem;
 
   &::-webkit-scrollbar {
-  width: 8px;
-}
+    width: 8px;
+  }
 
-&::-webkit-scrollbar-track {
-  background-color: transparent;
-  border-radius: 100px;
-}
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 100px;
+  }
 
-&::-webkit-scrollbar-thumb {
-  background-color: #dadada44;
-  border-radius: 100px;
-}
+  &::-webkit-scrollbar-thumb {
+    background-color: #dadada44;
+    border-radius: 100px;
+  }
+
+  @media (max-width: 400px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-self: center;
+    justify-content: center;
+  }
 `;
 
 const H1 = styled.h1`
@@ -56,7 +62,7 @@ function CategoryExplorePage() {
 
   return (
     <>
-      <SearchButtonGroup />
+      {/* <SearchButtonGroup /> */}
       <H1>Top results</H1>
       <PlayerDiv>
         {songs &&

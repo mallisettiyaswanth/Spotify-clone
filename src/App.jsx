@@ -1,18 +1,18 @@
 //@ts-nocheck
 import { Buffer } from 'buffer';
 import { Suspense, useEffect, useState } from 'react';
-import { useNavigation, BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { PlayerProvider } from './Context/MusicPlayerContext';
 import UserAccess from './authentication/UserAccess';
 import CategoryExplorePage from './pages/CategoryExplorePage';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import NumberSignUpPage from './pages/NumberSignUpPage';
 import PageNotFound from './pages/PageNotFound';
 import SearchPage from './pages/SearchPage';
 import GlobalStyles from './styles/GlobalStyles';
 import AppLayout from './ui/AppLayout';
 import Spinner from './ui/Spinner';
-import NumberSignUpPage from './pages/NumberSignUpPage';
-import { PlayerProvider } from './Context/MusicPlayerContext';
 
 function App() {
   const CLIENT_ID = '42050ac0bed043c4842448c81c2c977f';
@@ -54,7 +54,6 @@ function App() {
               <Route path="home" element={<Home />} />
               <Route path="search" element={<SearchPage />} />
               <Route path="search/:q" element={<CategoryExplorePage />} />
-              <Route path="search/:q/:type" element={<CategoryExplorePage />} />
               <Route path="search/category/:q" element={<CategoryExplorePage />} />
             </Route>
             <Route path="login" element={<Login />} />

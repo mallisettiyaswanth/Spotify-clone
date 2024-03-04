@@ -17,18 +17,22 @@ const Cards = styled.div`
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {
-  width: 8px;
-}
+    width: 8px;
+  }
 
-&::-webkit-scrollbar-track {
-  background-color: transparent;
-  border-radius: 100px;
-}
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 100px;
+  }
 
-&::-webkit-scrollbar-thumb {
-  background-color: #dadada44;
-  border-radius: 100px;
-}
+  &::-webkit-scrollbar-thumb {
+    background-color: #dadada44;
+    border-radius: 100px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 0.2rem;
+  }
 `;
 
 function CategoryCards() {
